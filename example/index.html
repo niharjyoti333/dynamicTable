@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/dynamicTable.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<script>
+    $(document).ready(function(){
+       $('table tr').dynamicTable({
+            keyboard: true,
+            button: true,
+            buttonSelector: ".edit",
+            maintainWidth: true,
+            dropdowns: {},
+           dynatableEdit: function(values) {
+                $(".edit i", this).removeClass('fa-pencil').addClass('fa-save invSave').attr('title', 'Save');
+           },
+           dynaTableSave: function(values) {
+                $(".edit i", this).removeClass('fa-save invSave').addClass('fa-pencil').attr('title', 'Edit');
+                var data =  {
+                    "firstname" : $('[data-fieldName="firstname"]',this).text(),
+                    "lastname" : $('[data-fieldName="lastname"]',this).text(),
+                    "username" : $('[data-fieldName="username"]',this).text()
+                };
+            }
+        })
+       })
+
+</script>
+<div class="bs-example" data-example-id="striped-table">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td data-colName="firstname">Mark</td>
+            <td data-colName="lastname">Otto</td>
+            <td data-colName="username">@mdo</td>
+            <td>
+                <a class="button button-small edit" title="Edit">
+                    <i class="glyphicon glyphicon-edit" title="Edit">edit</i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td data-colName="firstname">Jacob</td>
+            <td data-colName="lastname">Thornton</td>
+            <td data-colName="username">@fat</td>
+            <td>
+                <a class="button button-small edit" title="Edit">
+                    <i class="glyphicon glyphicon-edit" title="Edit">edit</i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td data-colName="firstname">Larry</td>
+            <td data-colName="lastname">the Bird</td>
+            <td data-colName="username">@twitter</td>
+            <td>
+                <a class="button button-small edit" title="Edit">
+                    <i class="glyphicon glyphicon-edit" title="Edit">edit</i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
